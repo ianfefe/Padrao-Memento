@@ -1,0 +1,26 @@
+%%{init: {"flowchart": {"curve": "linear"}, "class": {"curve": "linear"}}}%%
+classDiagram
+    direction TD
+
+    class Pedido {}
+    class PedidoEstado {
+        <<interface>>
+    }
+    class PedidoEstadoRecebido {}
+    class PedidoEstadoEmPreparo {}
+    class PedidoEstadoSaiuParaEntrega {}
+    class PedidoEstadoEntregue {}
+    class PedidoEstadoCancelado {}
+
+    Pedido --> "1" PedidoEstado
+    Pedido --> "0..*" PedidoEstado
+    PedidoEstado <|-- PedidoEstadoRecebido
+    PedidoEstadoRecebido --> "1" PedidoEstadoRecebido
+    PedidoEstado <|-- PedidoEstadoEmPreparo
+    PedidoEstadoEmPreparo --> "1" PedidoEstadoEmPreparo
+    PedidoEstado <|-- PedidoEstadoSaiuParaEntrega
+    PedidoEstadoSaiuParaEntrega --> "1" PedidoEstadoSaiuParaEntrega
+    PedidoEstado <|-- PedidoEstadoEntregue
+    PedidoEstadoEntregue --> "1" PedidoEstadoEntregue
+    PedidoEstado <|-- PedidoEstadoCancelado
+    PedidoEstadoCancelado --> "1" PedidoEstadoCancelado
